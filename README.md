@@ -35,6 +35,14 @@ configuration file.
 In this last case you're responsible for making sure that file exists,
 via another puppet resource or otherwise.
 
+By default, the riemann archive is downloaded from aphyr.com. If you
+want to supply your own download location, set it as follows:
+
+    class { 'riemann': archive_download_base_path => 'http://some.domain/path' }
+
+Note that the archive has be called `riemann-${version}.tar.bz2` and
+has to have the same structure as the one provided by aphyr.com.
+
 ## Example
 
 For a fully working example of this module you may also be interested in

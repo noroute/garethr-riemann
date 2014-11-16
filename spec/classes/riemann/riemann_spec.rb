@@ -49,6 +49,21 @@ describe 'riemann', :type => :class do
     it { should contain_file('/etc/puppet/riemann.yaml').with_content(/6000/)}
   end
 
+  context 'without a custom tar download path' do
+    let(:params) { {'version' => '1.0.0'} }
+    it 'should download the riemann archive from default location' do
+      should contain_wget__fetch('download_riemann').with_source('http://aphyr.com/riemann/riemann-1.0.0.tar.bz2')
+      end
+  end
+
+  context 'with a custom tar download path' do
+    let(:params) { {'archive_download_base_path' => 'https://custom.domain/custom_path',
+        'version' => '1.0.0'} }
+    it 'should download the riemann archive from the custom location' do
+      should contain_wget__fetch('download_riemann').with_source('https://custom.domain/custom_path/riemann-1.0.0.tar.bz2')
+    end
+  end
+    
   context 'with an invalid config file path' do
     let(:params) { {'config_file' => 'not a path'} }
     it do

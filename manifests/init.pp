@@ -20,12 +20,17 @@
 #   The system user which riemann runs as. Defaults to riemann. Will be
 #   created by the module.
 #
+# [*archive_dowload_base_path*]
+#   The base path (URL) where the riemann tar.bz2 file resides. Defaults
+#   to the primary distribution location on aphyr.com
+
 class riemann(
   $version = $riemann::params::version,
   $config_file = $riemann::params::config_file,
   $host = $riemann::params::host,
   $port = $riemann::params::port,
   $user = $riemann::params::user,
+  $archive_download_base_path = $riemann::params::archive_download_base_path,
 ) inherits riemann::params {
 
   validate_absolute_path($config_file)

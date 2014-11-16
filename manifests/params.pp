@@ -10,6 +10,7 @@ class riemann::params {
   $host = 'localhost'
   $user = 'riemann'
   $rvm_ruby_string = undef
+  $archive_download_base_path = 'http://aphyr.com/riemann'
 
   case $::osfamily {
     'Debian': {
